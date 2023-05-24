@@ -1,5 +1,5 @@
 {
-    "name": "react-router",
+    "name": "redux-mstp",
     "version": "1.0.0",
     "author": "Kevin Huang",
     "scripts": {
@@ -13,10 +13,12 @@
         "@emotion/styled": "*",
         "@mui/icons-material": "*",
         "@mui/material": "*",
+        "@reduxjs/toolkit": "*",
         "axios": "*",
         "cookie": "*",
         "react": "*",
         "react-dom": "*",
+        "react-redux": "*",
         "react-router-dom": "*",
         "uuid": "*"
     },

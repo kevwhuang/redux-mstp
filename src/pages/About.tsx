@@ -1,4 +1,6 @@
-export default function () {
+import React from 'react';
+
+function About(): React.ReactElement {
     return (
         <div className="about">
             <h2>ABOUT US</h2>
@@ -25,3 +27,5 @@ export default function () {
         </div>
     );
 }
+
+export default About;

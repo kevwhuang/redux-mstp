@@ -2,7 +2,7 @@
     "dir": "ltr",
     "display": "browser",
     "lang": "en",
-    "name": "react-router",
+    "name": "redux-mstp",
     "orientation": "landscape-primary",
     "icons": [
         {

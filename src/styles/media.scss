@@ -1,0 +1,54 @@
+@media screen and (max-width: 1024px) {
+    .cards {
+        div {
+            width: calc(100% / 2);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about {
+        width: 80%;
+    }
+
+    .cards {
+        div {
+            width: 100%;
+        }
+    }
+
+    .details {
+        h2 {
+            font-size: 2rem;
+        }
+
+        li {
+            font-size: 1rem;
+        }
+    }
+
+    .error {
+        font-size: 2rem;
+    }
+
+    .header {
+        display: none;
+    }
+
+    .nav-link {
+        font-size: 1.5rem;
+        margin: .5rem;
+    }
+
+    .navbar {
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .details {
+        h2 {
+            font-size: 1rem;
+        }
+    }
+}

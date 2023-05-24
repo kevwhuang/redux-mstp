@@ -1,16 +1,17 @@
 import React from 'react';
 import cookie from 'cookie';
-import { AppBar, Toolbar, Typography } from '@mui/material';
 import { Link, Outlet } from 'react-router-dom';
 
-export const LoginContext: any = React.createContext(null);
+import { AppBar, Toolbar, Typography } from '@mui/material';
 
-export default function Navbar() {
-    const [isLoggedIn, setIsLoggedIn]: [boolean, Function]
-        = React.useState(cookie.parse(document.cookie)['loggedIn'] ? true : false);
+import NavbarContext from '../contexts/NavbarContext';
+
+function Navbar(): React.ReactElement {
+    const [isLoggedIn, setIsLoggedIn]: [boolean, React.Dispatch<React.SetStateAction<boolean>>]
+        = React.useState(cookie.parse(document.cookie)['logged_in'] ? true : false);
 
     return (
-        <LoginContext.Provider value={{ setIsLoggedIn }}>
+        <NavbarContext.Provider value={setIsLoggedIn}>
             <AppBar position="relative">
                 <Toolbar>
                     <Typography className="header" variant="h4" style={{ flexGrow: '1' }}>REACT ROUTER</Typography>
@@ -22,6 +23,8 @@ export default function Navbar() {
                 </Toolbar>
             </AppBar>
             <Outlet />
-        </LoginContext.Provider>
+        </NavbarContext.Provider>
     );
 }
+
+export default Navbar;

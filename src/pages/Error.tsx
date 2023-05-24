@@ -1,3 +1,7 @@
-export default function () {
-    return <h1 className="error">404: PAGE NOT FOUND</h1>;
+import React from 'react';
+
+function Error(): React.ReactElement {
+    return <h1 className="error">UNKNOWN ERROR</h1>;
 }
+
+export default Error;

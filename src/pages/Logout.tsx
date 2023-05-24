@@ -2,12 +2,18 @@ import React from 'react';
 import cookie from 'cookie';
 import { Navigate } from 'react-router-dom';
 
-import { LoginContext } from '../layouts/Navbar.tsx';
+import NavbarContext from '../contexts/NavbarContext';
 
-export default function () {
-    const { setIsLoggedIn }: any = React.useContext(LoginContext);
+function Logout(): React.ReactElement {
+    const setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+        = React.useContext(NavbarContext);
 
-    document.cookie = cookie.serialize('loggedIn', '', { maxAge: 0 });
-    setIsLoggedIn(false);
+    React.useEffect((): void => {
+        setIsLoggedIn(false);
+    }, []);
+
+    document.cookie = cookie.serialize('logged_in', '', { maxAge: 0 });
     return <Navigate to="/" />;
 }
+
+export default Logout;

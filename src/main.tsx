@@ -1,32 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import {
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
+    RouterProvider,
+} from 'react-router-dom';
 
-import Navbar from './layouts/Navbar.tsx';
+import Navbar from './layouts/Navbar';
 
-import About from './pages/About.tsx';
-import Details from './pages/Details.tsx';
-import Error from './pages/Error.tsx';
-import Home from './pages/Home.tsx';
-import Logout from './pages/Logout.tsx';
+import About from './pages/About';
+import Details from './pages/Details';
+import Error from './pages/Error';
+import Fallback from './pages/Fallback';
+import Home from './pages/Home';
+import Logout from './pages/Logout';
+import NotFound from './pages/NotFound';
 
-import Protect from './auth/Protect.tsx';
+import Protect from './features/Protect';
+import store from './data/store';
 
 import './styles/rectify.scss';
 import './styles/main.scss';
+import './styles/media.scss';
+
+const router: any = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={<Navbar />} errorElement={<Error />}>
+        <Route index element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="about" element={<Protect component={About} />} />
+        <Route path="details" element={<Protect component={Details} />}>
+            <Route path=":id" />
+        </Route>
+        <Route path="logout" element={<Logout />} />
+    </Route>
+));
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
-        <Router>
-            <Routes>
-                <Route path="/" element={<Navbar />}>
-                    <Route index element={<Home />} />
-                    <Route path="about" element={<Protect component={About} />} />
-                    <Route path="details" element={<Protect component={Details} />} />
-                    <Route path="logout" element={<Logout />} />
-                </Route>
-                <Route path="*" element={<Error />} />
-            </Routes>
-        </Router>
+        <Provider store={store}>
+            <RouterProvider router={router} fallbackElement={<Fallback />} />
+        </Provider>
     </React.StrictMode>
 );
